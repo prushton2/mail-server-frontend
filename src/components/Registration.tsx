@@ -1,8 +1,14 @@
 
 
-function RegisterEmail() {
-
-    return "";
+export function RegisterEmail() {
+    console.log("yo");
+    return <dialog>Test</dialog>;
 }
 
-export default RegisterEmail;
+export function ShowDialog() {
+
+}
+
+export function HideDialog() {
+    
+}

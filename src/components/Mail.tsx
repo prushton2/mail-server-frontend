@@ -5,6 +5,7 @@ import { fetchData } from "../lib/ajax.ts";
 import { senderAddress } from "../lib/models/senderAddress.ts";
 import { Email } from "../lib/models/email.ts";
 // import { RegisterEmail } from "./Registration.tsx"
+// import "material-ui-confirm"
 
 import ReactLogo from "../assets/react.svg"
 import "./Mail.css"
@@ -56,9 +57,9 @@ function Mail() {
         </div>
 
         <div className="bar1">
-
+            {/* {RegisterEmail()} */}
             <button className="refreshbtn" onClick={() => {setCurrentAddress(currentAddress)}}>↺</button> 
-            <button className="registerbtn">Register an Address</button> 
+            <button className="registerbtn" onClick={() => {}}>Register an Address</button> 
 
             <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
                 {addresses}
