@@ -14,7 +14,7 @@ body {
     background-color: var(--headerColor);
 }
 
-.headermenu {
+.headerMenu {
     padding-right: 10px;
     top: 10px;
     float: right;

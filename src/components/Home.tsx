@@ -5,22 +5,23 @@ function App() {
 
   return (
     <>
-    <div className='header'>
-        Jacks Mail Service
-        <br />
-        <div className='headermenu'>
-            Logo Here
+        <div className='header'>
+            Jacks Mail Service
+            <br />
+            <div className='headerMenu'>
+                Logo Here
+            </div>
+            <div className='headerMenu'>
+                <button className='headerButton'>About</button> 
+            </div>
+            <div className='headerMenu'>
+                <button className='headerButton' onClick={() => {window.location.href = "/Login"}} >Sign Up</button> 
+            </div>
+            <div className='headerMenu'>
+                <button className='headerButton' onClick={() => {window.location.href = "/Login"}} >Log In</button> 
+            </div>
         </div>
-        <div className='headermenu'>
-            <button className='headerButton'>About</button> 
-        </div>
-        <div className='headermenu'>
-            <button className='headerButton'>Sign Up</button> 
-        </div>
-        <div className='headermenu'>
-            <button className='headerButton'>Log In</button> 
-        </div>
-    </div>
+        Jack youre putting stuff here
     </>
   )
 }

@@ -1,0 +1,32 @@
+.container {
+    top: 0px;
+    position: absolute;
+
+    padding-top: 10px;
+
+    /* border: 1px solid purple; */
+    width: 100vw;
+    display: flex;
+    align-items: stretch;
+}
+
+.bar0 {
+    border: 1px solid red;
+    order: 1;
+    flex-shrink: 1;
+    padding: 10px;
+}
+
+.bar1 {
+    border: 1px solid red;
+    order: 2;
+    flex-grow: 2;
+    padding: 10px;
+}
+
+.bar2 {
+    border: 1px solid red;
+    order: 3;
+    flex-grow: 7;
+    padding: 10px;
+}
