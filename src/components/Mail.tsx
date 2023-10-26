@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../lib/ajax.ts";
 import { senderAddress } from "../lib/models/senderAddress.ts";
+import { Email, Address } from "../lib/models/email.ts";
 import ReactLogo from "../assets/react.svg"
 import "./Mail.css"
 
 function Mail() {
     const [icons, setIcon] = useState<JSX.Element>(<><img src={ReactLogo}/></>);
     const [addresses, setAddresses] = useState<JSX.Element[]>([]);
+    
     const [inbox, setInbox] = useState<JSX.Element[]>([]);
+    const [allMail, setAllMail] = useState<Email[]>([]);
+    
     const [activeMail, setActiveMail] = useState<JSX.Element>(<></>);
 
     const [currentAddress, setCurrentAddress] = useState<string>("");
@@ -22,10 +26,27 @@ function Mail() {
                 setAddresses(RenderAddresses(fetchedAddresses));
                 setCurrentAddress(`${fetchedAddresses[0].username}@${fetchedAddresses[0].domain}`);
             }
-
         }
         get();
     }, [])
+
+    useEffect(() => {
+        async function get() {
+            let emails: Email[] | null = (await fetchEmails(currentAddress));
+    
+            if(!emails) {
+                return;
+            }
+            setAllMail(emails);
+        }
+        if(currentAddress) {
+            get();
+        }
+    }, [currentAddress])
+
+    useEffect(() => {
+        setInbox(renderEmails(allMail));
+    }, [allMail])
 
     return <div className="container">
         <div className="bar0">
@@ -41,7 +62,9 @@ function Mail() {
                 {addresses}
             </select>
             <br />
-            {inbox}
+            <div style={{"borderTop": "3px solid black"}}>
+                {inbox}
+            </div>
         </div>
 
         <div className="bar2">
@@ -80,8 +103,30 @@ function RenderAddresses(addresses: senderAddress[]): JSX.Element[] {
 }
 
 
-function fetchEmails():   {
+async function fetchEmails(currentAddress: string): Promise<Array<Email> | null> {
 
+    let token = localStorage.getItem("Authorization")
+    if(!token) {
+        return null;
+    }
+
+    let emails = (await fetchData.fetchMail(token, 25, 0, currentAddress))["emails"];
+    return emails;
 }
 
+
+function renderEmails(emails: Email[]): JSX.Element[] {
+    
+    let emailjsx: JSX.Element[] = [];
+
+    emails.forEach((email: Email) => {
+        emailjsx.push(
+        <div key={email._id} className="inboxElement">
+            {email.subject} <br/>
+            <label className="inboxElementBodyPreview">{email.text}</label>
+        </div>)
+    })
+    
+    return emailjsx;
+}
 export default Mail;
