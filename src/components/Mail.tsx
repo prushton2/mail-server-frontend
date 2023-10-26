@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "./lib/ajax.ts";
-import { senderAddress } from "./lib/models.ts";
+import { fetchData } from "../lib/ajax.ts";
+import { senderAddress } from "../lib/models/senderAddress.ts";
 import ReactLogo from "../assets/react.svg"
 import "./Mail.css"
 
@@ -33,6 +33,10 @@ function Mail() {
         </div>
 
         <div className="bar1">
+
+            <button className="refreshbtn">↺</button> 
+            <button className="registerbtn">Register an Address</button> 
+
             <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
                 {addresses}
             </select>
@@ -67,7 +71,7 @@ function RenderAddresses(addresses: senderAddress[]): JSX.Element[] {
 
     addresses.forEach((element) => {
         jsx.push(
-            <option value={`${element.username}@${element.domain}`}>
+            <option value={`${element.username}@${element.domain}`} key={`${element.username}@${element.domain}`}>
                 {element.username}@{element.domain}
             </option>);
     })
@@ -76,6 +80,8 @@ function RenderAddresses(addresses: senderAddress[]): JSX.Element[] {
 }
 
 
-// function fetchEmails()
+function fetchEmails():   {
+
+}
 
 export default Mail;

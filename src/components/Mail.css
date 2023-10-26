@@ -11,22 +11,46 @@
 }
 
 .bar0 {
-    border: 1px solid red;
+    border: 1px solid var(--borderColor);
     order: 1;
     flex-shrink: 1;
     padding: 10px;
 }
 
 .bar1 {
-    border: 1px solid red;
+    border: 1px solid var(--borderColor);;
     order: 2;
     flex-grow: 2;
     padding: 10px;
 }
 
 .bar2 {
-    border: 1px solid red;
+    border: 1px solid var(--borderColor);;
     order: 3;
-    flex-grow: 7;
+    flex-grow: 20;
     padding: 10px;
+}
+
+.refreshbtn {
+    margin: 5px;
+    padding: 0px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--backgroundColorElement);
+}
+
+.registerbtn {
+    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 40px;
+    /* width: 40px; */
+    border: 1px solid var(--borderColor);
+    background-color: var(--backgroundColorElement);
+}
+
+select {
+    margin: 5px;
+    height: 40px;
 }

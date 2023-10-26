@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { senderAddress } from "./models";
+import { senderAddress } from "./models/senderAddress";
 
 export const fetchData = {
     // fetchMail: async(authToken, count, page, address) => {
