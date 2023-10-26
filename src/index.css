@@ -4,9 +4,10 @@
 
   --backgroundColor: #003051;
   --backgroundColorDark: #001031;
+
   --backgroundColorElement: #333;
-  --backgroundColorElementLight: #444;
   --backgroundColorElementDark: #222;
+  --backgroundColorElementLight: #444;
   
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   /* line-height: 1.5; */

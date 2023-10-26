@@ -2,7 +2,7 @@ export interface Email {
     _id: string
     
     //body
-    html: JSX.Element,
+    html: string,
     text: string,
 
     //subject

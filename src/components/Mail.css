@@ -13,7 +13,8 @@
 .bar0 {
     border: 1px solid var(--borderColor);
     order: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
     padding: 10px;
 }
 
@@ -21,13 +22,17 @@
     border: 1px solid var(--borderColor);;
     order: 2;
     flex-grow: 2;
+    flex-shrink: 0;
+    flex-basis: 0;
     padding: 10px;
 }
 
 .bar2 {
     border: 1px solid var(--borderColor);;
     order: 3;
-    flex-grow: 20;
+    flex-grow: 4.5;
+    flex-shrink: 0;
+    flex-basis: 0;
     padding: 10px;
 }
 
@@ -56,11 +61,15 @@ select {
 }
 
 .inboxElement {
-    margin-bottom: 10px;
+    margin-bottom: -1px;
     border-bottom: 3px dashed var(--borderColor);
     /* border-bottom: 1px solid var(--borderColor); */
     padding: 5px;
     height: 10vh;
+}
+
+.inboxElement.Selected {
+    background-color: var(--backgroundColorDark);
 }
 
 .inboxElementBodyPreview {

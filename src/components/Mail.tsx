@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
+import DOMPurify from "isomorphic-dompurify";
+
 import { fetchData } from "../lib/ajax.ts";
 import { senderAddress } from "../lib/models/senderAddress.ts";
-import { Email, Address } from "../lib/models/email.ts";
+import { Email } from "../lib/models/email.ts";
+// import { RegisterEmail } from "./Registration.tsx"
+
 import ReactLogo from "../assets/react.svg"
 import "./Mail.css"
 
+
+
 function Mail() {
-    const [icons, setIcon] = useState<JSX.Element>(<><img src={ReactLogo}/></>);
-    const [addresses, setAddresses] = useState<JSX.Element[]>([]);
+    const [icons] = useState<JSX.Element>(<><img src={ReactLogo}/></>); //deal with later
     
-    const [inbox, setInbox] = useState<JSX.Element[]>([]);
+    const [addresses, setAddresses] = useState<JSX.Element[]>([]);
+    const [currentAddress, setCurrentAddress] = useState<string>("");
+
     const [allMail, setAllMail] = useState<Email[]>([]);
     
-    const [activeMail, setActiveMail] = useState<JSX.Element>(<></>);
-
-    const [currentAddress, setCurrentAddress] = useState<string>("");
+    const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
 
     useEffect(() => {
@@ -31,6 +36,7 @@ function Mail() {
     }, [])
 
     useEffect(() => {
+        setSelectedIndex(-1);
         async function get() {
             let emails: Email[] | null = (await fetchEmails(currentAddress));
     
@@ -44,10 +50,6 @@ function Mail() {
         }
     }, [currentAddress])
 
-    useEffect(() => {
-        setInbox(renderEmails(allMail));
-    }, [allMail])
-
     return <div className="container">
         <div className="bar0">
             {icons}
@@ -55,7 +57,7 @@ function Mail() {
 
         <div className="bar1">
 
-            <button className="refreshbtn">↺</button> 
+            <button className="refreshbtn" onClick={() => {setCurrentAddress(currentAddress)}}>↺</button> 
             <button className="registerbtn">Register an Address</button> 
 
             <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
@@ -63,70 +65,77 @@ function Mail() {
             </select>
             <br />
             <div style={{"borderTop": "3px solid black"}}>
-                {inbox}
+                {renderEmails(allMail)}
             </div>
         </div>
 
-        <div className="bar2">
-            {activeMail}
+        <div className="bar2" dangerouslySetInnerHTML={{
+            __html: eccSanitizeMail()}}>
         </div>
 
     </div>
-}
 
-
-async function fetchAddresses(): Promise<{"addresses": Array<senderAddress>}> {
-    
-    let authtoken: string | null = localStorage.getItem("Authorization");
-    let data;
-    if(authtoken) {
-        data = await fetchData.fetchAddresses(authtoken);
-    } else {
-        // return "No User Found ";
-        throw "No user found 💀";
+    function eccSanitizeMail(): string | TrustedHTML {
+        if(allMail.length === 0 || selectedIndex === -1) {
+            return "<label></label>";
+        }
+        return DOMPurify.sanitize(allMail[selectedIndex].html);
     }
-    return data;
-}
-
-function RenderAddresses(addresses: senderAddress[]): JSX.Element[] {
-
-    let jsx: JSX.Element[] = [];
-
-    addresses.forEach((element) => {
-        jsx.push(
-            <option value={`${element.username}@${element.domain}`} key={`${element.username}@${element.domain}`}>
-                {element.username}@{element.domain}
-            </option>);
-    })
-
-    return jsx;
-}
-
-
-async function fetchEmails(currentAddress: string): Promise<Array<Email> | null> {
-
-    let token = localStorage.getItem("Authorization")
-    if(!token) {
-        return null;
+    
+    async function fetchAddresses(): Promise<{"addresses": Array<senderAddress>}> {
+        
+        let authtoken: string | null = localStorage.getItem("Authorization");
+        let data;
+        if(authtoken) {
+            data = await fetchData.fetchAddresses(authtoken);
+        } else {
+            throw "No user found 💀";
+        }
+        return data;
     }
 
-    let emails = (await fetchData.fetchMail(token, 25, 0, currentAddress))["emails"];
-    return emails;
+    function RenderAddresses(addresses: senderAddress[]): JSX.Element[] {
+
+        let jsx: JSX.Element[] = [];
+
+        addresses.forEach((element) => {
+            jsx.push(
+                <option value={`${element.username}@${element.domain}`} key={`${element.username}@${element.domain}`}>
+                    {element.username}@{element.domain}
+                </option>);
+        })
+
+        return jsx;
+    }
+
+
+    async function fetchEmails(currentAddress: string): Promise<Array<Email> | null> {
+
+        let token = localStorage.getItem("Authorization")
+        if(!token) {
+            return null;
+        }
+
+        let emails = (await fetchData.fetchMail(token, 25, 0, currentAddress))["emails"];
+        return emails;
+    }
+
+
+    function renderEmails(emails: Email[]): JSX.Element[] {
+        
+        let emailjsx: JSX.Element[] = [];
+
+        emails.forEach((email: Email, i: number) => {
+            emailjsx.push(
+            <div key={email._id} className={`inboxElement${selectedIndex===i ?" Selected":""}`} onClick={() => setSelectedIndex(i)}>
+                {email.subject} <br/>
+                <label className="inboxElementBodyPreview">{email.text}</label>
+            </div>)
+        })
+        
+        return emailjsx;
+    }
 }
 
 
-function renderEmails(emails: Email[]): JSX.Element[] {
-    
-    let emailjsx: JSX.Element[] = [];
-
-    emails.forEach((email: Email) => {
-        emailjsx.push(
-        <div key={email._id} className="inboxElement">
-            {email.subject} <br/>
-            <label className="inboxElementBodyPreview">{email.text}</label>
-        </div>)
-    })
-    
-    return emailjsx;
-}
 export default Mail;
