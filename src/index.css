@@ -1,6 +1,6 @@
 :root {
-  --headerColor: #00004B;
-  --backgroundColor: #112;
+  --headerColor: #000;
+  --backgroundColor: #003051;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
