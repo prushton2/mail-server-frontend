@@ -1,14 +1,21 @@
+import { useState } from "react";
+import "./Registration.css"
 
+export function RegisterEmail({isOpen, close}: {isOpen: boolean, close: () => void}) {
 
-export function RegisterEmail() {
-    console.log("yo");
-    return <dialog>Test</dialog>;
-}
+    const [address, setAddress] = useState<string>("");
+    const [domain, setDomain] = useState<string>("eastarcti.ca");
 
-export function ShowDialog() {
-
-}
-
-export function HideDialog() {
-    
+    return <div className="modal" style={{display: isOpen ? "block" : "none"}}>
+            <div className="modal-content">
+                <button className="close" onClick={(e) => {close()}}>X</button>
+                <input onChange={(e) => {setAddress(e.target.value)}}></input>
+                @
+                <select onChange={(e) => {setDomain(e.target.value)}}>
+                    <option value="eastarcti.ca">
+                        eastarcti.ca
+                    </option>
+                </select>
+            </div>
+        </div>;
 }

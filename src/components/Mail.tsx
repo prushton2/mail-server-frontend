@@ -4,8 +4,7 @@ import DOMPurify from "isomorphic-dompurify";
 import { fetchData } from "../lib/ajax.ts";
 import { senderAddress } from "../lib/models/senderAddress.ts";
 import { Email } from "../lib/models/email.ts";
-// import { RegisterEmail } from "./Registration.tsx"
-// import "material-ui-confirm"
+import { RegisterEmail } from "./Registration.tsx";
 
 import ReactLogo from "../assets/react.svg"
 import "./Mail.css"
@@ -22,6 +21,7 @@ function Mail() {
     
     const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
         async function get() {
@@ -52,14 +52,14 @@ function Mail() {
     }, [currentAddress])
 
     return <div className="container">
+        <RegisterEmail isOpen={modalOpen} close={() => {setModalOpen(false); setCurrentAddress(currentAddress)}}/>
         <div className="bar0">
             {icons}
         </div>
 
         <div className="bar1">
-            {/* {RegisterEmail()} */}
             <button className="refreshbtn" onClick={() => {setCurrentAddress(currentAddress)}}>↺</button> 
-            <button className="registerbtn" onClick={() => {}}>Register an Address</button> 
+            <button className="registerbtn" onClick={() => {setModalOpen(true)}}>Register an Address</button> 
 
             <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
                 {addresses}
