@@ -34,7 +34,7 @@ function Mail() {
             }
         }
         get();
-    }, [])
+    }, [modalOpen])
 
     useEffect(() => {
         setSelectedIndex(-1);
