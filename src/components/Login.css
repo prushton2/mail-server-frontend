@@ -1,0 +1,33 @@
+.logincontainer {
+    /* border: 1px solid red; */
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+.loginWindow {
+    text-align: center;
+    font-size: xx-large;
+    
+    min-height: 60%;
+    min-width: 20vw;
+    width: min-content;
+    padding: 30px;
+    
+    background-color: var(--backgroundColorDark);
+}
+
+input {
+    background-color: var(--backgroundColorElement);
+    height: 50px;
+    width: 250px;
+}
+
+.loginButton {
+    border: none;
+    width: 250px;
+    height: 50px;
+}

@@ -1,12 +1,16 @@
-.container {
-    top: 0px;
+.mailcontainer {
+    /* border: 1px solid red; */
+    
     position: absolute;
-
+    top: 5vh;
+    
+    display: flex;
+    align-items: top;
+    justify-content: left;
+    
     padding-top: 10px;
 
-    /* border: 1px solid purple; */
     width: 100vw;
-    display: flex;
     align-items: stretch;
 }
 

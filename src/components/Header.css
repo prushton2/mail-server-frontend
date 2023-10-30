@@ -1,0 +1,32 @@
+.header {
+    position: absolute;
+    top: 0px;
+    
+    min-height: 30px;
+    height: 5vh;
+    padding-top: 10px;
+
+    /* min-padding-bottom: 20px; */
+    width: 100%;
+    
+    justify-content: center;
+    /* text-align: center; */
+    background-color: var(--headerColor);
+}
+
+.headerMenu {
+    /* border: 1px solid red; */
+    padding-right: 10px;
+    /* margin-top: auto; */
+    float: right;
+    /* text-align: right; */
+}
+
+.headerButton {
+    font-weight: bold;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+}

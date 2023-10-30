@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DOMPurify from "isomorphic-dompurify";
 
+import Header from "./Header.tsx";
 import { fetchData } from "../lib/ajax.ts";
 import { senderAddress } from "../lib/models/senderAddress.ts";
 import { Email } from "../lib/models/email.ts";
@@ -51,30 +52,33 @@ function Mail() {
         }
     }, [currentAddress])
 
-    return <div className="container">
-        <RegisterEmail isOpen={modalOpen} close={() => {setModalOpen(false); setCurrentAddress(currentAddress)}}/>
-        <div className="bar0">
-            {icons}
-        </div>
-
-        <div className="bar1">
-            <button className="refreshbtn" onClick={() => {setCurrentAddress(currentAddress)}}>↺</button> 
-            <button className="registerbtn" onClick={() => {setModalOpen(true)}}>Register an Address</button> 
-
-            <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
-                {addresses}
-            </select>
-            <br />
-            <div style={{"borderTop": "3px solid black"}}>
-                {renderEmails(allMail)}
+    return <>
+        <Header />
+        <div className="mailcontainer">
+            <RegisterEmail isOpen={modalOpen} close={() => {setModalOpen(false); setCurrentAddress(currentAddress)}}/>
+            <div className="bar0">
+                {icons}
             </div>
-        </div>
 
-        <div className="bar2" dangerouslySetInnerHTML={{
-            __html: eccSanitizeMail()}}>
-        </div>
+            <div className="bar1">
+                <button className="refreshbtn" onClick={() => {setCurrentAddress(currentAddress)}}>↺</button> 
+                <button className="registerbtn" onClick={() => {setModalOpen(true)}}>Register an Address</button> 
 
-    </div>
+                <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
+                    {addresses}
+                </select>
+                <br />
+                <div style={{"borderTop": "3px solid black"}}>
+                    {renderEmails(allMail)}
+                </div>
+            </div>
+
+            <div className="bar2" dangerouslySetInnerHTML={{
+                __html: eccSanitizeMail()}}>
+            </div>
+
+        </div>
+    </>
 
     function eccSanitizeMail(): string | TrustedHTML {
         if(allMail.length === 0 || selectedIndex === -1) {

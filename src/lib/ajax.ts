@@ -26,3 +26,12 @@ export const Mail = {
         return response.data;
     }
 }
+
+export const Account = {
+    login: async(username: string, password: string): Promise<{success: boolean, token: string, error: string}> => {
+        const config: AxiosRequestConfig = {};
+        const url = "https://api.eastarcti.ca/mail/v1/login";
+        const response = await axios.post(url, {username: username, password: password}, config);
+        return response.data;
+    }
+}

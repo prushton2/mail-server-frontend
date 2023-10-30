@@ -1,31 +1,3 @@
 body {
     background-color: var(--backgroundColor);  
 }
-
-.header {
-    position: absolute;
-    top: 0px;
-    
-    height: 10vh;
-    padding-top: 10px;
-
-    width: 100%;
-    text-align: center;
-    background-color: var(--headerColor);
-}
-
-.headerMenu {
-    padding-right: 10px;
-    top: 10px;
-    float: right;
-    text-align: right;
-}
-
-.headerButton {
-    font-weight: bold;
-    border: none;
-    background-color: inherit;
-    padding: 0;
-    padding-right: 10px;
-    padding-left: 10px;
-}
