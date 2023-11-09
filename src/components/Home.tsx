@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-        <Header />
+        <Header state={"home"}/>
         Jack youre putting stuff here
     </>
   )

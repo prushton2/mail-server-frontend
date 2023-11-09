@@ -53,7 +53,7 @@ function Mail() {
     }, [currentAddress])
 
     return <>
-        <Header />
+        <Header state="window"/>
         <div className="mailcontainer">
             <RegisterEmail isOpen={modalOpen} close={() => {setModalOpen(false); setCurrentAddress(currentAddress)}}/>
             <div className="bar0">

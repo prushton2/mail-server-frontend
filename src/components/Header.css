@@ -11,7 +11,7 @@
     
     justify-content: center;
     /* text-align: center; */
-    background-color: var(--headerColor);
+    background-color: var(--color10);
 }
 
 .headerMenu {

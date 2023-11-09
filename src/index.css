@@ -1,10 +1,15 @@
 :root {
   --color60: #23272a;
-  --color30: #110066;
-  --color10: #000;
+  --color30: #126;
+  --color10: #24C;
+
+  /* --color60: white;
+  --color30: grey;
+  --color10: black; */
 
   --headerColor: var(--color30);
   --borderColor: #000;
+  --borderColorLight: grey;
 
   --backgroundColor: var(--color60);
   --backgroundColorDark: var(--color30);

@@ -17,7 +17,7 @@ function Window({isSignup, onLogin}: {
     const [invite, setInvite] = useState("");
 
     return <div className="logincontainer">
-        <Header />
+        <Header state={"login"}/>
         <div className="loginWindow">
             Login <br />
             <input placeholder="Username" onChange={(e) => setUsername(e.target.value)}/> <br />
@@ -28,7 +28,7 @@ function Window({isSignup, onLogin}: {
             : <></>
             }
 
-            <button className="loginButton" onClick={(e) => {login()}}>Log in</button>
+            <button className="loginButton" onClick={() => {login()}}>Log in</button>
         </div>
     </div>
 
@@ -41,7 +41,7 @@ function Window({isSignup, onLogin}: {
 
 export function Login() {
 
-    skipPage();
+    // skipPage();
     
     return <Window isSignup={false} onLogin={(un, pw) => Login(un, pw)} />
     function skipPage() {
@@ -68,7 +68,7 @@ export function SignUp() {
     return <Window isSignup={true} onLogin={(un, pw, inv) => Signup(un, pw, inv)} />
     
     function Signup(username: string, password: string, invite: string) {
-        
+        console.log(username, password, invite);
     }
 }
 

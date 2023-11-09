@@ -17,8 +17,8 @@ export function RegisterEmail({isOpen, close}: {isOpen: boolean, close: () => vo
                     </option>
                 </select>
                 <br /><br />
-                <button className="close" onClick={(e) => {close()}}>Cancel</button>
-                <button className="confirm" onClick={(e) => {sendRequest(address, domain)}}>Confirm</button>
+                <button className="close" onClick={() => {close()}}>Cancel</button>
+                <button className="confirm" onClick={() => {sendRequest(address, domain)}}>Confirm</button>
             </div>
         </div>
 

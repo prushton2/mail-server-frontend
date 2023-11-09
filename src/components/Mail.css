@@ -66,14 +66,14 @@ select {
 
 .inboxElement {
     margin-bottom: -1px;
-    border-bottom: 3px dashed var(--borderColor);
+    border-bottom: 3px dashed var(--borderColorLight);
     /* border-bottom: 1px solid var(--borderColor); */
     padding: 5px;
     height: 10vh;
 }
 
 .inboxElement.Selected {
-    background-color: var(--backgroundColorDark);
+    background-color: var(--color30);
 }
 
 .inboxElementBodyPreview {
