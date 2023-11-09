@@ -41,7 +41,7 @@ function Window({isSignup, onLogin}: {
 
 export function Login() {
 
-    // skipPage();
+    skipPage();
     
     return <Window isSignup={false} onLogin={(un, pw) => Login(un, pw)} />
     function skipPage() {
