@@ -16,6 +16,7 @@
 
 .bar0 {
     border: 1px solid var(--borderColor);
+    border-bottom: none;
     order: 1;
     flex-shrink: 0;
     flex-basis: 0;
@@ -23,16 +24,18 @@
 }
 
 .bar1 {
-    border: 1px solid var(--borderColor);;
+    border: 3px solid var(--borderColor);
+    border-bottom: none;
     order: 2;
     flex-grow: 2;
     flex-shrink: 0;
     flex-basis: 0;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .bar2 {
-    border: 1px solid var(--borderColor);;
+    border: 1px solid var(--borderColor);
+    border-bottom: none;
     order: 3;
     flex-grow: 4.5;
     flex-shrink: 0;
@@ -67,6 +70,9 @@ select {
 .inboxElement {
     margin-bottom: -1px;
     border-bottom: 3px dashed var(--borderColorLight);
+    /* border-left: 3px solid var(--borderColor);
+    border-right: 3px solid var(--borderColor); */
+    
     /* border-bottom: 1px solid var(--borderColor); */
     padding: 5px;
     height: 10vh;
@@ -78,4 +84,18 @@ select {
 
 .inboxElementBodyPreview {
     color: grey;
+}
+
+.mailHeader {
+    border: 3px solid var(--borderColor);
+    background-color: var(--backgroundColorElement);
+    margin: 10px;
+    padding: 10px;
+}
+
+.mailBody {
+    border: 3px solid var(--borderColor);
+    background-color: var(--backgroundColorElement);
+    margin: 10px;
+    padding: 10px;
 }

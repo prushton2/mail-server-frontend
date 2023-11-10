@@ -8,8 +8,8 @@ export interface Email {
     //subject
     subject: string,
 
-    sender: Address[],
-    recipient: Address[]
+    from: Address[],
+    to: Address[]
 }
 
 export interface Address {

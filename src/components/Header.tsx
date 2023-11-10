@@ -36,9 +36,9 @@ function Header({state}: {state: string}) {
 
     function renderHeaderElements(buttons: JSX.Element[]) {
         let jsx: JSX.Element[] = [];
-        buttons.forEach((element) => {
+        buttons.forEach((element, index) => {
             jsx.push(
-                <div className='headerMenu'>
+                <div key={index} className='headerMenu'>
                     {element}
                 </div>
             )

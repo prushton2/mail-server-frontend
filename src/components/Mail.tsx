@@ -73,20 +73,32 @@ function Mail() {
                 </div>
             </div>
 
-            <div className="bar2" dangerouslySetInnerHTML={{
-                __html: eccSanitizeMail()}}>
+            <div className="bar2">
+                {renderAndSanitizeMail()}
             </div>
 
         </div>
     </>
 
-    function eccSanitizeMail(): string | TrustedHTML {
+    function renderAndSanitizeMail(): JSX.Element {
         if(allMail.length === 0 || selectedIndex === -1) {
-            return "<label></label>";
+            return <label></label>;
         }
-        return DOMPurify.sanitize(allMail[selectedIndex].html);
+
+        // console.log(); 
+        return <>
+            <div className="mailHeader">
+                {allMail[selectedIndex].from[0].name}{"     "}
+                {"<"}{allMail[selectedIndex].from[0].address}{">"}
+                
+            </div>
+            <div className="mailBody" dangerouslySetInnerHTML={{ 
+                __html: DOMPurify.sanitize(allMail[selectedIndex].html)}}>  
+            </div>
+        </>
     }
-    
+
+
     async function fetchAddresses(): Promise<{"addresses": Array<senderAddress>}> {
         
         let authtoken: string | null = localStorage.getItem("Authorization");
