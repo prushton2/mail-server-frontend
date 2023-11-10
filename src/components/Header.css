@@ -30,3 +30,7 @@
     padding-right: 10px;
     padding-left: 10px;
 }
+
+.headerButton:hover {
+    background-color: var(--color30);
+}

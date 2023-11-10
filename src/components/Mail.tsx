@@ -67,8 +67,10 @@ function Mail() {
                 <select onChange={(e) => {setCurrentAddress(e.target.value)}}>
                     {addresses}
                 </select>
+                <div style={{"borderTop": "1px solid black"}}></div>
                 <br />
-                <div style={{"borderTop": "3px solid black"}}>
+                <br />
+                <div style={{"borderTop": "1px solid black"}}>
                     {renderEmails(allMail)}
                 </div>
             </div>
@@ -145,6 +147,7 @@ function Mail() {
         emails.forEach((email: Email, i: number) => {
             emailjsx.push(
             <div key={email._id} className={`inboxElement${selectedIndex===i ?" Selected":""}`} onClick={() => setSelectedIndex(i)}>
+                {email.from[0].name} <br/>
                 {email.subject} <br/>
                 <label className="inboxElementBodyPreview">{email.text}</label>
             </div>)
