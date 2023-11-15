@@ -71,6 +71,7 @@ export function SignUp() {
         let response: {success: boolean, token: string, error: string}
         try {
             response = await Account.signup(username, password, invite);
+            console.log(response.success)
             // localStorage.setItem("Authorization", response.token);
             alert("Account is activated. Please log in");
             window.location.href = "/Login";
