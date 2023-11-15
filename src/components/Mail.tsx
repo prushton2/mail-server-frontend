@@ -90,12 +90,19 @@ function Mail() {
         // console.log(); 
         return <>
             <div className="mailHeader">
+                {allMail[selectedIndex].subject}
+            </div>
+            <div className="mailBody">
+                <b>
+                    
                 {allMail[selectedIndex].from[0].name}{"     "}
                 {"<"}{allMail[selectedIndex].from[0].address}{">"}
-                
-            </div>
-            <div className="mailBody" dangerouslySetInnerHTML={{ 
-                __html: DOMPurify.sanitize(allMail[selectedIndex].html)}}>  
+                </b>
+                <br />
+                <br />
+                <div dangerouslySetInnerHTML={{ 
+                    __html: DOMPurify.sanitize(allMail[selectedIndex].html)}}>  
+                </div>
             </div>
         </>
     }
@@ -148,8 +155,8 @@ function Mail() {
             emailjsx.push(
             <div key={email._id} className={`inboxElement${selectedIndex===i ?" Selected":""}`} onClick={() => setSelectedIndex(i)}>
                 {email.from[0].name} <br/>
-                {email.subject} <br/>
-                <label className="inboxElementBodyPreview">{email.text}</label>
+                {email.subject.substring(0, 48)} <br/>
+                <label className="inboxElementBodyPreview">{email.text.substring(0, 48)}</label>
             </div>)
         })
         
