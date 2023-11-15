@@ -8,7 +8,7 @@ function Header({state}: {state: string}) {
     let about = <button className='headerButton'>About</button>;
     let signup = <button className='headerButton' onClick={() => {window.location.href = "/Signup"}} >Sign Up</button>; 
     let login = <button className='headerButton' onClick={() => {window.location.href = "/Login"}} >Log In</button>; 
-    let logout = <button className='headerButton' onClick={() => {window.location.href = "/Login"}} >Log Out</button>; 
+    let logout = <button className='headerButton' onClick={() => {window.localStorage.removeItem("Authorization"); window.location.href = "/"}} >Log Out</button>; 
     let home = <button className='headerButton' onClick={() => {window.location.href = "/"}} >Home</button>; 
 
     useEffect(() => {

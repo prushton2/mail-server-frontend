@@ -33,5 +33,11 @@ export const Account = {
         const url = "https://api.eastarcti.ca/mail/v1/login";
         const response = await axios.post(url, {username: username, password: password}, config);
         return response.data;
+    },
+    signup: async (username: string, password: string, invite: string) => {
+        const config: AxiosRequestConfig = {};
+        const url = "https://api.eastarcti.ca/mail/v1/register";
+        const response = await axios.post(url, {username: username, password: password, invite: invite}, config);
+        return response.data;
     }
 }

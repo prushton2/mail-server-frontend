@@ -19,7 +19,7 @@ function Window({isSignup, onLogin}: {
     return <div className="logincontainer">
         <Header state={"login"}/>
         <div className="loginWindow">
-            Login <br />
+            {isSignup ? "Sign up" : "Login"} <br />
             <input placeholder="Username" onChange={(e) => setUsername(e.target.value)}/> <br />
             <input placeholder="Password" onChange={(e) => setPassword(e.target.value)} type="password" />
 
@@ -28,7 +28,7 @@ function Window({isSignup, onLogin}: {
             : <></>
             }
 
-            <button className="loginButton" onClick={() => {login()}}>Log in</button>
+            <button className="loginButton" onClick={() => {login()}}>{isSignup ? "Sign Up": "Log in"}</button>
         </div>
     </div>
 
@@ -67,8 +67,17 @@ export function Login() {
 export function SignUp() {
     return <Window isSignup={true} onLogin={(un, pw, inv) => Signup(un, pw, inv)} />
     
-    function Signup(username: string, password: string, invite: string) {
-        console.log(username, password, invite);
+    async function Signup(username: string, password: string, invite: string) {
+        let response: {success: boolean, token: string, error: string}
+        try {
+            response = await Account.signup(username, password, invite);
+            // localStorage.setItem("Authorization", response.token);
+            alert("Account is activated. Please log in");
+            window.location.href = "/Login";
+        } catch (err: any) {
+            err = err as AxiosError;
+            alert(err.response.data.error);
+        }    
     }
 }
 
